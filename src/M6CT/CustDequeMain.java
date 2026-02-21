@@ -3,8 +3,21 @@ package M6CT;
 import java.util.Iterator;
 import java.util.Random;
 
+
+/**
+ * Demonstration runner for {@link CustDeque}.
+ *
+ * <p>This class generates an array of ten random integers, enqueues them into a
+ * {@code CustDeque} by alternating between the front and back, then prints the
+ * deque contents using the custom iterator.</p>
+ */
 public class CustDequeMain {
 
+    /**
+     * Program entry point. Demonstrates insertion and traversal using {@link CustDeque}.
+     *
+     * @param args command-line arguments (not used)
+     */
     public static void main(String[] args) {
 
         CustDeque deque = new CustDeque();
@@ -45,6 +58,15 @@ public class CustDequeMain {
 	//****************************
     //Helper Test Methods
 	//****************************
+    
+    /**
+     * Generates an array of random integers.
+     *
+     * @param size the number of integers to generate
+     * @param min the minimum possible value (inclusive)
+     * @param max the maximum possible value (inclusive)
+     * @return an int array filled with random values in the given range
+     */
     private static int[] generateRandomArray(int size, int min, int max) {
         Random random = new Random();
         int[] array = new int[size];
@@ -56,6 +78,11 @@ public class CustDequeMain {
         return array;
     }
 
+    /**
+     * Prints an array in a readable format.
+     *
+     * @param array the array to print
+     */
     private static void printArray(int[] array) {
         System.out.print("[");
         for (int i = 0; i < array.length; i++) {

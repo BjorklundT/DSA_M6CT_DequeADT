@@ -3,8 +3,20 @@ package M6CT;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+
+/**
+ * Lightweight test harness for {@link CustDeque}.
+ *
+ * <p>This class does not use JUnit. Instead, it runs a set of small tests and prints
+ * PASS/FAIL output to verify correct behavior, including edge cases.</p>
+ */
 public class CustDequeTest {
 
+    /**
+     * Runs all tests for {@link CustDeque}.
+     *
+     * @param args command-line arguments (not used)
+     */
     public static void main(String[] args) {
 
     	testInqueOrder();
@@ -19,6 +31,11 @@ public class CustDequeTest {
 	//****************************
 	//TESTERS
 	//****************************
+    
+    /**
+     * Verifies that alternating front/back insertions produce the expected order
+     * when traversed from front to rear.
+     */
     private static void testInqueOrder() {
         CustDeque deque = new CustDeque();
 
@@ -31,6 +48,9 @@ public class CustDequeTest {
         assertQueEquals("testInQueOrder", deque, expected);
     }
 
+    /**
+     * Verifies that {@link CustDeque#dequeFront()} removes the correct value.
+     */
     private static void testDequeFront() {
         CustDeque deque = new CustDeque();
         deque.queBack(1);
@@ -41,6 +61,9 @@ public class CustDequeTest {
         assertEquals("testDequeFront", 1, value);
     }
 
+    /**
+     * Verifies that {@link CustDeque#dequeRear()} removes the correct value.
+     */
     private static void testDequeRear() {
         CustDeque deque = new CustDeque();
         deque.queBack(1);
@@ -51,6 +74,9 @@ public class CustDequeTest {
         assertEquals("testDequeRear", 3, value);
     }
 
+    /**
+     * Verifies that the custom iterator traverses elements in correct front-to-rear order.
+     */
     private static void testIterator() {
         CustDeque deque = new CustDeque();
         deque.queBack(-10);
@@ -61,6 +87,10 @@ public class CustDequeTest {
         assertQueEquals("testIterator", deque, expected);
     }
 
+    /**
+     * Verifies that attempting to dequeue from an empty deque throws exceptions
+     * for both front and rear removals.
+     */
     private static void testEmptyQueThrow() {
         CustDeque deque = new CustDeque();
 
@@ -85,6 +115,14 @@ public class CustDequeTest {
 	//****************************
 	//Assert Helpers
 	//****************************
+    
+    /**
+     * Compares the deque contents (via iterator traversal) against an expected array.
+     *
+     * @param testName the name to print in PASS/FAIL output
+     * @param deque the deque being tested
+     * @param expected the expected front-to-rear traversal order
+     */
     private static void assertQueEquals(String testName, CustDeque deque, int[] expected) {
         int index = 0;
         Iterator<Integer> queIterator = deque.iterator();
@@ -119,6 +157,13 @@ public class CustDequeTest {
         System.out.println("[PASS] " + testName);
     }
     
+    /**
+     * Asserts that two integer values are equal and prints PASS/FAIL output.
+     *
+     * @param testName the name to print in PASS/FAIL output
+     * @param expected the expected value
+     * @param actual the actual value
+     */
     private static void assertEquals(String testName, int expected, int actual) {
         if (expected == actual) {
             System.out.println("[PASS] " + testName + "  Expected: " + expected + "  Actual: " + actual);
@@ -127,6 +172,12 @@ public class CustDequeTest {
         }
     }
 
+    /**
+     * Asserts that a condition is true and prints PASS/FAIL output.
+     *
+     * @param testName the name to print in PASS/FAIL output
+     * @param condition the boolean condition that must be true
+     */
     private static void assertTrue(String testName, boolean condition) {
         if (condition) {
             System.out.println("[PASS] " + testName);
